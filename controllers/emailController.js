@@ -1,9 +1,13 @@
 const express = require("express")
 const nodemailer = require("nodemailer")
 const User = require("../models/User")
+const dotenv = require("dotenv")
 
 
-const from = "abhinavkumar5010@gmail.com"
+dotenv.config()
+
+
+const from = process.env.MAILSENDER
 const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
@@ -11,7 +15,7 @@ const transporter = nodemailer.createTransport({
     requireTLS: true,
     auth: {
         user: from,
-        pass: "dpttgwbbtaorycit"
+        pass: process.env.PASSWORD
     }
 })
 
